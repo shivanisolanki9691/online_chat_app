@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <div class="card">
+    <div class="row">
+      <div class="col-3">
+        <%= render 'form', room: Room.new %>
+      <hr>
+      <% @rooms.each do |room| %>
+      <%= link_to room ,  { :style => 'text-decoration: none;' } do %>
+      <div class="card md-6" style="background-color: lightgrey;" >
+        <div class="card-body" style="color: black;"><%= image_tag("images.png", alt: "Image Description", width: "30", height: "30") %>
+          <%= room.name %>
+        </div>
+      </div>
+      <% end %>
+      <% end %>
+    </div>
+    <div class="col-9">
+        <% if @room.present? %>
+      <div class="chat-room">
+        <nav class="navbar navbar-light bg-light" style="position: fixed; width: 72.1%; height: 50px; background-color: green;">
+          <span class="navbar-brand" href="#" ><%= image_tag("images.png", alt: "Image Description", width: "30", height: "30") %><%= @room.name %></span>
+          <ul class="navbar-nav">
+            <li class="nav-item"></li>
+          </ul>
+        </nav> 
+      </br>
+      </br>
+      </br> 
+        <div id="message">
+          <% @room.messages.each do |message| %>  
+            <%= render 'messages/message', message: message %> <br /></br>
+          <% end %>
+          <div class="chat-box">
+            <%= render 'messages/form',message: Message.new, room: @room %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

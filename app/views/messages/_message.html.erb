@@ -1,0 +1,15 @@
+<div class="message mb-3 <%= 'me' if message.user == current_user %>">
+  <div class="content-container">
+    <div class="content">
+      <%= message.content %>
+        <% if current_user || message.user == current_user %>
+        <%= link_to 'Delete', message_path(message), method: :delete, data: { confirm: 'Are you sure you want to delete this message?' }, class: 'delete-button', style: 'text-decoration: none;' %>
+      <% end %>
+    </div>
+
+    <div class="author">
+      <%= message.user.username %>
+    </div>
+  </div>
+</div>
+
